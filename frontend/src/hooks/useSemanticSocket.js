@@ -19,7 +19,7 @@ export function useSemanticSocket({ onPacket }) {
 
   useEffect(() => {
     // Connect ONLY ONCE!
-    const socket = new WebSocket("ws://localhost:8000/ws/semantic")
+    const socket = new WebSocket("wss://crx-naad.onrender.com/ws/semantic")
     socketRef.current = socket
 
     socket.onopen = () => setConnected(true)

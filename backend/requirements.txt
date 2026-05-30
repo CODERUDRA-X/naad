@@ -1,0 +1,13 @@
+# Web Server & Framework
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+
+# Protocol & Pipeline Engine
+pipecat-ai==1.2.1
+
+# LLM APIs
+openai>=1.14.0
+
+# Environment & Data Validation
+python-dotenv>=1.0.0
+pydantic>=2.0.0

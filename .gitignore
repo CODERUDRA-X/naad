@@ -1,18 +1,22 @@
-# dependencies
-
-node_modules/
-venv/
-**pycache**/
-
-# env
-
+# Secrets & Environment Variables 
 .env
-*.env
+.env.local
+.env.*
 
-# logs
+# Python & Backend stuffs
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
 
-npm-debug.log*
+#  Node.js & Frontend materials
+node_modules/
+dist/
+build/
+.npm/
 
-# misc
-
+#  OS Generated Files 
 .DS_Store
+Thumbs.db

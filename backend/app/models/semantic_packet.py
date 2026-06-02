@@ -11,13 +11,7 @@ class SemanticPacket(BaseModel):
     
     text: str
     
-    emotion: Literal[
-        "neutral",
-        "happy",
-        "serious",
-        "excited",
-        "thinking"
-    ]
+    emotion: Literal['neutral', 'happy', 'serious', 'excited', 'thinking', 'sad', 'error']
 
     pace: float
     

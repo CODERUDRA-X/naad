@@ -54,11 +54,12 @@ async def semantic_socket(websocket: WebSocket):
 
             try:
                 current_emotion = "neutral" 
+                has_generated_text = False # Tracks if AI spoke
                 
                 async for chunk in stream_semantic_response(user_input):
                     raw_text = chunk.get("text", "")
                     
-                    # Update emotion state only if a new tag appears
+                    # Update emotion state
                     matches = TAG_REGEX.findall(raw_text)
                     if matches:
                         current_emotion = matches[-1].lower()
@@ -66,6 +67,7 @@ async def semantic_socket(websocket: WebSocket):
                     clean_text = TAG_REGEX.sub("", raw_text).strip()
 
                     if clean_text:
+                        has_generated_text = True 
                         print(f"⚡ DEBUG: [{current_emotion}] {clean_text}")
                         transcript.append(f"AGENT: {clean_text}")
                         
@@ -76,11 +78,16 @@ async def semantic_socket(websocket: WebSocket):
                         
             except Exception as e:
                 print(f"🚨 CRITICAL FAULT: Network/API failed -> {e}")
-                error_packet = packetizer.create_packet(
-                    text="System alert. Neural core connection disrupted.", 
-                    emotion="sad", pace=1.0, interruptible=True, final=False
-                )
-                await task.queue_frame(SemanticFrame(error_packet.model_dump()))
+                
+                # Send error only if AI failed completely
+                if not has_generated_text:
+                    error_packet = packetizer.create_packet(
+                        text="System alert. Neural core connection disrupted.", 
+                        emotion="sad", pace=1.0, interruptible=True, final=False
+                    )
+                    await task.queue_frame(SemanticFrame(error_packet.model_dump()))
+                else:
+                    print("⚠️ DEBUG: API stream closed forcefully, ignoring.")
 
             final_packet = packetizer.create_packet(text="", emotion="neutral", final=True)
             await task.queue_frame(SemanticFrame(final_packet.model_dump()))

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { useSemanticQueue } from "./hooks/useSemanticQueue"
 import { useSemanticSocket } from "./hooks/useSemanticSocket"
 import "./styles/app.css"
+import SemanticGauge from './SemanticGauge';
 
 export default function App() {
   const [packets, setPackets] = useState([])

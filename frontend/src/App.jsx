@@ -102,10 +102,18 @@ export default function App() {
   <p>Live payload bytes received</p>
 </div>
           <div className="metric-card">
-            <h3>Traditional Audio</h3>
-            <div className="metric-value danger">~1.8 MB</div>
-            <p>Standard WebRTC benchmark</p>
-          </div>
+  <h3>Traditional Audio</h3>
+  <div 
+    className="metric-value danger" 
+    style={{ 
+      textShadow: webRTCBytes > 0 ? '0 0 15px rgba(239,68,68,0.5)' : 'none',
+      transition: 'all 0.3s ease'
+    }}
+  >
+    {webRTCBytes === 0 ? "~1.8 MB" : `~${webRTCDisplay}`}
+  </div>
+  <p>Simulated WebRTC overhead</p>
+</div>
           <div className="metric-card">
             <h3>Active Seq</h3>
             <div className="metric-value">#{currentSeq}</div>

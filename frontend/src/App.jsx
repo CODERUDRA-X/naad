@@ -69,7 +69,12 @@ export default function App() {
     }
     recognition.start()
   }
-
+  
+  // 👉 YAHAN ADD KAR (return se theek pehle)
+  const webRTCBytes = totalBytes * 324; 
+  const isMB = webRTCBytes > 1048576;
+  const webRTCDisplay = isMB ? (webRTCBytes / 1048576).toFixed(2) + " MB" : (webRTCBytes / 1024).toFixed(2) + " KB";
+  
   return (
     <div className="app">
       <header className="topbar">

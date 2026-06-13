@@ -96,10 +96,11 @@ export default function App() {
       <main className="dashboard">
         <section className="metrics-panel">
           <div className="metric-card">
-            <h3>Semantic Protocol</h3>
-            <div className="metric-value success">{(totalBytes / 1024).toFixed(2)} KB</div>
-            <p>Live payload bytes received</p>
-          </div>
+  <h3>Semantic Protocol</h3>
+  {/* Naya SVG Gauge Yahan Aayega */}
+  <SemanticGauge bytesReceived={totalBytes} />
+  <p>Live payload bytes received</p>
+</div>
           <div className="metric-card">
             <h3>Traditional Audio</h3>
             <div className="metric-value danger">~1.8 MB</div>

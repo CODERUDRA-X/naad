@@ -87,26 +87,28 @@ body {
 
 .metrics-panel {
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 
 .metric-card {
   background: #121a30;
-
   border: 1px solid #1f2a44;
-
   border-radius: 16px;
-
   padding: 20px;
+  
+  /* Flex magic to center everything inside the grid box */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+/* Optional: h3 ka margin thoda kam kiya taaki gauge better fit ho */
 .metric-card h3 {
   color: #94a3b8;
-  margin-bottom: 16px;
+  margin-bottom: 8px; 
 }
 
 .metric-value {
